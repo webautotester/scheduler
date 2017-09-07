@@ -12,6 +12,9 @@ RUN n latest
 RUN apt-get update -y \
     && apt-get install cron -y
 
+
+RUN touch /var/log/watcron.log
+
 RUN mkdir /tmp/scheduler
 WORKDIR /tmp/scheduler
 RUN mkdir routes
