@@ -12,10 +12,6 @@ RUN n latest
 RUN apt-get update -y \
     && apt-get install cron -y
 
-
-RUN adduser --quiet --disabled-password --shell /bin/bash --home /home/runner --gecos "User" scheduler
-
-USER scheduler
 RUN mkdir /tmp/scheduler
 WORKDIR /tmp/scheduler
 RUN mkdir routes
@@ -26,6 +22,8 @@ COPY package.json .
 RUN npm install
 
 COPY run.sh .
+
+EXPOSE 8090
 
 CMD ["bash","./run.sh"]
 
