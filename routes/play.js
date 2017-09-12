@@ -3,7 +3,7 @@ const amqp = require('amqplib');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const Crontab = require('crontab');
-const QUEUE_NAME = 'wat_queue'
+const QUEUE_NAME = 'wat_queue';
 
 module.exports.init = function(serverNames, webServer) {
 	const dbUrl = `mongodb://${serverNames.mongoServerName}:27017/wat_storage`;
