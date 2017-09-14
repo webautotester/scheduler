@@ -23,6 +23,9 @@ module.exports.init = function(serverNames, webServer) {
 		})
 		.get('/unschedule/:sid', (req, res) => {//daily
 			removeCron(req,res, req.params.sid);
+		})
+		.get('/isscheduled/:sid', (req, res) => {
+			isScheduled(req, res, req.params.sid);
 		});
 
 	function playNow(req, res, sid) {
@@ -124,6 +127,18 @@ module.exports.init = function(serverNames, webServer) {
 					res.status(200).send(`${sid} removed from the list`).end();
 				}
 			}); 
+		});
+	}
+
+	function isScheduled(req, res, sid) {
+		winston.info(`Check if (${sid}) is scheduled`);
+		Crontab.load((err, ct) => {
+			const jobs = ct.jobs({comment: sid});
+			if ( jobs && jobs.length > 0 ) {
+				res.status(200).send(true).end();
+			} else {
+				res.status(200).send(false).end();
+			}
 		});
 	}
 	
