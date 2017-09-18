@@ -16,7 +16,7 @@ module.exports.init = function(serverNames, webServer) {
 			//each minute for test purpose
 			//will be each day in beta production
 			const options = {
-				cron : '* * * * *',
+				cron : '0 6 * * *',
 				sid : req.params.sid
 			};
 			addCron(req,res, options);
