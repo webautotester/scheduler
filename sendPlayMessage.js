@@ -37,7 +37,7 @@ function playNow(sid) {
 							winston.info('Play Crone Request ');
 							var scenarioToPlay = promizesResults[0][0];
 							var channel = promizesResults[1];
-							var msg = JSON.stringify({ sid:scenarioToPlay._id , actions: scenarioToPlay.actions });
+							var msg = JSON.stringify(scenarioToPlay);
 							winston.info(msg);
 							channel.assertQueue(QUEUE_NAME, { durable: true })
 								.then(ok => {
